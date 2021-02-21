@@ -1,0 +1,34 @@
+server:
+  port: 8888
+  tomcat:
+    basedir: /basedir/temp
+
+spring:
+  # 数据库连接信息
+  datasource:
+    name: ox
+    url: jdbc:mysql://127.0.0.1:3306/ox?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  # freemarker
+  freemarker:
+    suffix: .ftl
+    content-type: text/html
+    enabled: true
+    # 缓存
+    cache: false
+    template-loader-path: classpath:/templates/
+    charset: UTF-8
+    allow-request-override: false
+    check-template-location: true
+    expose-session-attributes: false
+    expose-request-attributes: false
+    expose-spring-macro-helpers: false
+    settings:
+      number_format: 0.##
+  jpa:
+    hibernate:
+      ddl-auto: update
