@@ -72,8 +72,11 @@ public class ExcelUtil {
                     if (type == String.class) {
                         cell.setCellValue(createHelper.createRichTextString((String) value));
                     }
+                    if (type == Integer.class) {
+                        cell.setCellValue(Integer.valueOf(String.valueOf(value)));
+                    }
                     if (type == Long.class) {
-                        cell.setCellValue(Double.parseDouble(String.valueOf(value)));
+                        cell.setCellValue(Double.valueOf(String.valueOf(value)));
                     }
                     if (type == Date.class) {
                         cell.setCellValue((Date) value);

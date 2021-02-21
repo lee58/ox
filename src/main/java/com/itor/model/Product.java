@@ -15,7 +15,7 @@ public class Product {
     // 价格 单位：分
     private Integer price;
     // 1：已下架 0：正常
-    private char deleted;
+    private String deleted;
     private String description;
     private Date createTime = new Date();
 }
