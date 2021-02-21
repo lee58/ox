@@ -28,21 +28,15 @@
                     <div class="ibox-title">
                         <h5>产品列表</h5>
                         <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
                             <a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="table_basic.html#">导入Excel</a>
                                 </li>
-                                <li><a href="table_basic.html#">导出Excel</a>
+                                <li><a onclick="exportProducts()" >导出Excel</a>
                                 </li>
                             </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -89,6 +83,11 @@
     <script src="../../js/demo/peity-demo.min.js"></script>
     <script>
         $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+        function exportProducts() {
+            $.post("/export/products",function (result) {
+                console.log(result);
+            });
+        }
     </script>
 </body>
 
