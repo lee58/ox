@@ -18,9 +18,13 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/list")
-    public String list(Map map) {
+    public String list(Map map, String name) {
         List<Product> productList = productService.findAll();
         map.put("productList", productList);
+        map.put("name", name);
+        map.put("page", 0);
+        map.put("count", productList.size());
+        map.put("data", productList);
         return "product/list";
     }
 

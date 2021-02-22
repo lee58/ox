@@ -66,6 +66,11 @@
                                     </#list>
                                 </#if>
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th colspan="6"></th>
+                            </tr>
+                            </tfoot>
                         </table>
 
                     </div>
@@ -75,19 +80,53 @@
         </div>
 
     </div>
+    <div id="paginate"></div>
     <script src="../../js/jquery.min.js?v=2.1.4"></script>
     <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
     <script src="../../js/plugins/peity/jquery.peity.min.js"></script>
     <script src="../../js/content.min.js?v=1.0.0"></script>
     <script src="../../js/plugins/iCheck/icheck.min.js"></script>
     <script src="../../js/demo/peity-demo.min.js"></script>
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/pagination.js"></script>
     <script>
+        $(function(){
+            $('#paginate').pagination({
+                dataSource: function(done) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/product/list',
+                        success: function(response) {
+                            console.log("dataSource", response);
+                            done(response);
+                        }
+                    });
+                },
+                totalNumber: 24,
+                pageNumber: 1,
+                pageSize: 10,
+                pageRange: 2,
+                showPrevious: true,
+                showNext: true,
+                showPageNumbers: true,
+                showGoInput: true,
+                showGoButton: true,
+                autoHidePrevious: true,
+                autoHideNext: true,
+                prevText: "上一页",
+                nextText: "下一页",
+                callback: function(data, pagination) {
+                   console.log(data, pagination);
+                }
+            })
+        })
         $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
         function exportProducts() {
             $.post("/export/products",function (result) {
                 console.log(result);
             });
         }
+
     </script>
 </body>
 
